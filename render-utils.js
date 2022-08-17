@@ -19,8 +19,12 @@ export function renderPosts(posts) {
         const li = document.createElement('li');
         li.classList.add('post-it');
 
+
+        // my code
         const a = document.createElement('a');
         a.href = `./post/?id=${post.id}`;
+        // end my code
+
 
         const titleEl = document.createElement('h2');
         titleEl.textContent = post.title;
@@ -44,7 +48,8 @@ export function renderPosts(posts) {
 
     return fragment;
 }
-export async function renderPostDetails(post) {
+// My code after
+export function renderPostDetails(post) {
     const container = document.createElement('div');
     const postTitle = document.createElement('h2');
     const catSpan = document.createElement('span');

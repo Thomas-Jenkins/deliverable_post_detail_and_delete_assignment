@@ -56,6 +56,6 @@ export async function createPost(post) {
 
 export async function getPostById(id) {
     const response = await client.from('posts').select(`*`).match({ id }).single();
-    console.log(response);
+
     return checkError(response);
 }
