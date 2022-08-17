@@ -19,6 +19,9 @@ export function renderPosts(posts) {
         const li = document.createElement('li');
         li.classList.add('post-it');
 
+        const a = document.createElement('a');
+        a.href = `./post/?id=${post.id}`;
+
         const titleEl = document.createElement('h2');
         titleEl.textContent = post.title;
 
@@ -35,8 +38,8 @@ export function renderPosts(posts) {
         contactEl.textContent = post.contact;
 
         li.append(titleEl, categoryEl, descriptionEl, contactEl);
-
-        fragment.append(li);
+        a.append(li);
+        fragment.append(a);
     }
 
     return fragment;
