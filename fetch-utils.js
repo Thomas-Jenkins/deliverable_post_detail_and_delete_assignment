@@ -54,10 +54,8 @@ export async function createPost(post) {
     return await client.from('posts').insert(post);
 }
 
-export async function getPost() {
-    const response = await client.from('posts').select(`
-    id`)
-        .limit(1)
-        .match();
+export async function getPostById(id) {
+    const response = await client.from('posts').select(`*`).match({ id }).single();
+    console.log(response);
     return checkError(response);
 }

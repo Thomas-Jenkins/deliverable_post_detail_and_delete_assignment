@@ -41,3 +41,25 @@ export function renderPosts(posts) {
 
     return fragment;
 }
+export async function renderPostDetails(post) {
+    const container = document.createElement('div');
+    const postTitle = document.createElement('h2');
+    const catSpan = document.createElement('span');
+    const descriptionEl = document.createElement('p');
+    const contactEl = document.createElement('p');
+    // const postBy = document.getElementById('h3');
+
+    postTitle.textContent = post.title;
+
+    catSpan.textContent = post.category_id;
+
+    descriptionEl.textContent = post.description;
+
+    contactEl.textContent = post.contact;
+
+    // postBy.textContent = post.user_id;
+
+    container.append(postTitle, catSpan, descriptionEl, contactEl);
+
+    return container;
+}
