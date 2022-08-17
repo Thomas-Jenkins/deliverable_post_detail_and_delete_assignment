@@ -24,7 +24,7 @@ async function displayPost() {
         
         deleteButton.addEventListener('click', async () => {
             await deletePost(data.id);
-            alert('Your post has been deleted')
+            alert('Your post has been deleted');
             location.replace('../');
         });
 
