@@ -22,12 +22,13 @@ async function displayPost() {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete Post';
         
-        deleteButton.addEventListener('click', () => {
-            deletePost(data.id);
-            
+        deleteButton.addEventListener('click', async () => {
+            await deletePost(data.id);
+            alert('Your post has been deleted')
+            location.replace('../');
         });
 
         postDetailsContainerEl.append(deleteButton);
     }
-};
+}
 
