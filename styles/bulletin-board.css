@@ -49,3 +49,15 @@
     right: 4px;
     font-size: 1.5em;
 }
+
+#profile-page {
+    display: grid;
+    justify-items: center;
+}
+
+#profile-container {
+    position: relative;
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+}

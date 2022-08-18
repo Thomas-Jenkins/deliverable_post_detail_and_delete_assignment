@@ -41,3 +41,37 @@ export function renderPosts(posts) {
 
     return fragment;
 }
+export function renderProfileDetails(profile) {
+    const profileContainer = document.createElement('div');
+    const profileNameContainer = document.createElement('div');
+    const bioContainer = document. createElement('div');
+    const avatarContainer = document.createElement('div');
+    const profileName = document.createElement('p');
+    const bio = document.createElement('p');
+
+    profileName.textContent = profile.user_name;
+
+    bio.textContent = profile.bio;
+
+    profileContainer.append(profileNameContainer, bioContainer, avatarContainer);
+    profileNameContainer.append(profileName);
+    bioContainer.append(bio);
+
+    return profileContainer;
+}
+export function renderProfilesList(profiles) {
+    const fragment = document.createDocumentFragment();
+
+    for (let profile of profiles) {
+        const a = document.createElement('a');
+        const li = document.createElement('li');
+
+        li.textContent = profile.user_name;
+
+        a.href = `../profile/?id=${profile.id}`;
+        a.append(li);
+        fragment.append(a);
+
+    }
+    return fragment;
+}
