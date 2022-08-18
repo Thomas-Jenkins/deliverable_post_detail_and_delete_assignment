@@ -19,6 +19,13 @@ export function renderPosts(posts) {
         const li = document.createElement('li');
         li.classList.add('post-it');
 
+
+        // my code
+        const a = document.createElement('a');
+        a.href = `./post/?id=${post.id}`;
+        // end my code
+
+
         const titleEl = document.createElement('h2');
         titleEl.textContent = post.title;
 
@@ -35,9 +42,32 @@ export function renderPosts(posts) {
         contactEl.textContent = post.contact;
 
         li.append(titleEl, categoryEl, descriptionEl, contactEl);
-
-        fragment.append(li);
+        a.append(li);
+        fragment.append(a);
     }
 
     return fragment;
+}
+// My code after
+export function renderPostDetails(post) {
+    const container = document.createElement('div');
+    const postTitle = document.createElement('h2');
+    const catSpan = document.createElement('span');
+    const descriptionEl = document.createElement('p');
+    const contactEl = document.createElement('p');
+    // const postBy = document.createElement('h3');
+
+    postTitle.textContent = post.title;
+
+    catSpan.textContent = post.category_id;
+
+    descriptionEl.textContent = post.description;
+
+    contactEl.textContent = post.contact;
+
+    // postBy.textContent = post.user_id;
+  
+    container.append(postTitle, catSpan, descriptionEl, contactEl);
+    
+    return container;
 }
