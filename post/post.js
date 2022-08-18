@@ -15,10 +15,7 @@ async function displayPost() {
     const postDiv = renderPostDetails(data);
     postDetailsContainerEl.append(postDiv);
     const user = checkAuth();
-    console.log(user.id);
-    console.log(data.user_id);
     if (user.id === data.user_id) {
-        console.log('hello');
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete Post';
         
