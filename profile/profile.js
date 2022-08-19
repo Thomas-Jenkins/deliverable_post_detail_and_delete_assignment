@@ -1,7 +1,11 @@
 import { renderProfileDetails } from '../render-utils.js';
 import { getProfileById, checkAuth } from '../fetch-utils.js';
+import { signOutUser } from '../fetch-utils.js';
 
 const profileDetailsContainer = document.getElementById('profile-container');
+
+const signOutLink = document.getElementById('sign-out-link');
+signOutLink.addEventListener('click', signOutUser);
 
 const params = new URLSearchParams(window.location.search);
 
@@ -14,8 +18,8 @@ async function displayProfile() {
     profileDetailsContainer.append(profileDiv);
     const user = checkAuth();
     console.log('userId', user.id);
-    console.log('data', data.user_id);
-    if (user.id === data.user_id) {
+    console.log('data', data.id);
+    if (user.id === data.id) {
         const updateButton = document.createElement('button');
         updateButton.textContent = 'Update Profile';
         profileDetailsContainer.append(updateButton);
