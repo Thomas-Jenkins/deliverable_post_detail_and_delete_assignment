@@ -43,19 +43,19 @@ export function renderPosts(posts) {
 }
 export function renderProfileDetails(profile) {
     const profileContainer = document.createElement('div');
-    const profileNameContainer = document.createElement('div');
-    const bioContainer = document. createElement('div');
+    const profileNameContainer = document.createElement('input');
+    const bioContainer = document. createElement('textarea');
     const avatarContainer = document.createElement('div');
     const profileName = document.createElement('p');
-    const bio = document.createElement('p');
+    
 
-    profileName.textContent = profile.user_name;
+    profileNameContainer.value = profile.user_name;
 
-    bio.textContent = profile.bio;
+    bioContainer.value = profile.bio;
 
     profileContainer.append(profileNameContainer, bioContainer, avatarContainer);
     profileNameContainer.append(profileName);
-    bioContainer.append(bio);
+    
 
     return profileContainer;
 }

@@ -11,6 +11,7 @@ export function getUser() {
 export function checkAuth() {
     const user = getUser();
     if (!user) location.replace(`/auth/?redirectUrl=${encodeURIComponent(location)}`);
+    console.log(user);
     return user;
 }
 
@@ -62,4 +63,8 @@ export async function getProfiles() {
 export async function getProfileById(id) {
     const response = await client.from('profiles').select('*').match({ id }).single();
     return checkError(response);
+}
+
+export async function saveProfile(id) {
+
 }
