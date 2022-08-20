@@ -8,10 +8,11 @@ export function getUser() {
     return client.auth.user();
 }
 
+
 export function checkAuth() {
     const user = getUser();
     if (!user) location.replace(`/auth/?redirectUrl=${encodeURIComponent(location)}`);
-    console.log(user);
+    
     return user;
 }
 
@@ -65,6 +66,11 @@ export async function getProfileById(id) {
     return checkError(response);
 }
 
-export async function saveProfile(id) {
-
-}
+// export async function createProfile(id, user_name, bio) {
+//     const response = await client.from('profiles').upsert({ id, user_name, bio });
+//     return checkError(response);
+// }
+// export async function getProfileIds() {
+//     const response = await client.from('profiles').select('id');
+//     return checkError(response);
+// }

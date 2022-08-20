@@ -59,6 +59,7 @@ export function renderProfileDetails(profile) {
 
     return profileContainer;
 }
+
 export function renderProfilesList(profiles) {
     const fragment = document.createDocumentFragment();
 
@@ -74,4 +75,18 @@ export function renderProfilesList(profiles) {
 
     }
     return fragment;
+}
+
+export function renderProfileCreate() {
+    const formDiv = document.createElement('form');
+    const nameInput = document.createElement('input');
+    const bioInput = document.createElement('textarea');
+    const formSubmit = document.createElement('button');
+
+    nameInput.placeholder = 'Enter Your Profile Name';
+    bioInput.placeholder = 'Enter Your Bio';
+    formSubmit.textContent = 'Create Profile';
+
+    formDiv.append(nameInput, bioInput, formSubmit);
+    return formDiv;
 }
