@@ -25,6 +25,9 @@ async function displayProfile() {
     } else {
         const profileDiv = renderProfileDetails(data);
         profileDetailsContainer.append(profileDiv);
+        const profileContainer = document.querySelector('#name-cont');
+        const bioContainer = document.querySelector('#bio-cont');
+        
 
         if (user.id === data.id) {
             const updateButton = document.createElement('button');
@@ -34,7 +37,7 @@ async function displayProfile() {
 
             updateButton.addEventListener('click', async () => {
                 console.log('hello');
-                createProfile(data, )
+                createProfile(data.id, profileContainer.value, bioContainer.value);
             });
         }
     }

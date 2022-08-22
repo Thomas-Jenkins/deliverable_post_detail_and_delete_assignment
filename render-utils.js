@@ -48,15 +48,16 @@ export function renderProfileDetails(profile) {
     const profileNameContainer = document.createElement('input');
     const bioContainer = document. createElement('textarea');
     const avatarContainer = document.createElement('div');
-    const profileName = document.createElement('p');
-    
+    // const profileName = document.createElement('p');
+    profileNameContainer.setAttribute('id', 'name-cont');
+    bioContainer.setAttribute('id', 'bio-cont');
 
     profileNameContainer.value = profile.user_name;
 
     bioContainer.value = profile.bio;
 
     profileContainer.append(profileNameContainer, bioContainer, avatarContainer);
-    profileNameContainer.append(profileName);
+    // profileNameContainer.append(profileName);
     
 
     return profileContainer;
