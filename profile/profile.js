@@ -1,5 +1,5 @@
-import { renderProfileDetails } from '../render-utils.js';
-import { getProfileById, checkAuth, signOutUser } from '../fetch-utils.js';
+import { renderProfileCreate, renderProfileDetails } from '../render-utils.js';
+import { getProfileById, checkAuth, signOutUser, createProfile } from '../fetch-utils.js';
 
 const profileDetailsContainer = document.getElementById('profile-container');
 
@@ -19,19 +19,23 @@ displayProfile();
 
 async function displayProfile() {
     const data = await getProfileById(params.get('id'));
-    const profileDiv = renderProfileDetails(data);
-    profileDetailsContainer.append(profileDiv);
-    
+    if (data === undefined) { 
+        const profileCreate = renderProfileCreate(data);
+        profileDetailsContainer.append(profileCreate);
+    } else {
+        const profileDiv = renderProfileDetails(data);
+        profileDetailsContainer.append(profileDiv);
 
-    
-    if (user.id === data.id) {
-        const updateButton = document.createElement('button');
-        updateButton.textContent = 'Update Profile';
-        profileDetailsContainer.append(updateButton);
+        if (user.id === data.id) {
+            const updateButton = document.createElement('button');
+            updateButton.textContent = 'Update Profile';
+            profileDetailsContainer.append(updateButton);
 
 
-        // updateButton.addEventListener('click', async () => {
-        //     // add update post function
-        // });
+            updateButton.addEventListener('click', async () => {
+                console.log('hello');
+                createProfile(data, )
+            });
+        }
     }
 }

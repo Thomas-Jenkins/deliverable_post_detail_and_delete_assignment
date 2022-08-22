@@ -1,3 +1,5 @@
+import { createProfile } from './fetch-utils.js';
+
 export function renderCategoryOptions(categories) {
     // document fragment is a "bag" for elements
     const fragment = document.createDocumentFragment();
@@ -77,8 +79,8 @@ export function renderProfilesList(profiles) {
     return fragment;
 }
 
-export function renderProfileCreate() {
-    const formDiv = document.createElement('form');
+export function renderProfileCreate(params) {
+    const formDiv = document.createElement('div');
     const nameInput = document.createElement('input');
     const bioInput = document.createElement('textarea');
     const formSubmit = document.createElement('button');
@@ -86,6 +88,19 @@ export function renderProfileCreate() {
     nameInput.placeholder = 'Enter Your Profile Name';
     bioInput.placeholder = 'Enter Your Bio';
     formSubmit.textContent = 'Create Profile';
+
+
+
+    formSubmit.addEventListener('click', () => {
+        const userId = params;
+        const userName = nameInput.value;
+        const userBio = bioInput.value; 
+        createProfile(userId, userName, userBio);
+        console.log('id', userId);
+        console.log(userName);
+        console.log(userBio);
+        // location.reload();
+    });
 
     formDiv.append(nameInput, bioInput, formSubmit);
     return formDiv;
