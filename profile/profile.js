@@ -19,6 +19,7 @@ displayProfile();
 
 async function displayProfile() {
     const data = await getProfileById(params.get('id'));
+    console.log('temp', data);
     if (data === undefined) { 
         const profileCreate = renderProfileCreate(data);
         profileDetailsContainer.append(profileCreate);
@@ -27,8 +28,6 @@ async function displayProfile() {
         profileDetailsContainer.append(profileDiv);
         const profileContainer = document.querySelector('#name-cont');
         const bioContainer = document.querySelector('#bio-cont');
-        
-
         if (user.id === data.id) {
             const updateButton = document.createElement('button');
             updateButton.textContent = 'Update Profile';
@@ -37,7 +36,8 @@ async function displayProfile() {
 
             updateButton.addEventListener('click', async () => {
                 console.log('hello');
-                createProfile(data.id, profileContainer.value, bioContainer.value);
+                await createProfile(data.id, profileContainer.value, bioContainer.value);
+                location.reload();
             });
         }
     }

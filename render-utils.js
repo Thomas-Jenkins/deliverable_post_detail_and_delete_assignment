@@ -92,15 +92,12 @@ export function renderProfileCreate(params) {
 
 
 
-    formSubmit.addEventListener('click', () => {
+    formSubmit.addEventListener('click', async () => {
         const userId = params;
         const userName = nameInput.value;
         const userBio = bioInput.value; 
-        createProfile(userId, userName, userBio);
-        console.log('id', userId);
-        console.log(userName);
-        console.log(userBio);
-        // location.reload();
+        await createProfile(userId, userName, userBio);
+        location.reload();
     });
 
     formDiv.append(nameInput, bioInput, formSubmit);
