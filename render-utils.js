@@ -1,3 +1,5 @@
+import { createProfile } from './fetch-utils.js';
+
 export function renderCategoryOptions(categories) {
     // document fragment is a "bag" for elements
     const fragment = document.createDocumentFragment();
@@ -40,4 +42,64 @@ export function renderPosts(posts) {
     }
 
     return fragment;
+}
+export function renderProfileDetails(profile) {
+    const profileContainer = document.createElement('div');
+    const profileNameContainer = document.createElement('input');
+    const bioContainer = document. createElement('textarea');
+    const avatarContainer = document.createElement('div');
+    // const profileName = document.createElement('p');
+    profileNameContainer.setAttribute('id', 'name-cont');
+    bioContainer.setAttribute('id', 'bio-cont');
+
+    profileNameContainer.value = profile.user_name;
+
+    bioContainer.value = profile.bio;
+
+    profileContainer.append(profileNameContainer, bioContainer, avatarContainer);
+    // profileNameContainer.append(profileName);
+    
+
+    return profileContainer;
+}
+
+export function renderProfilesList(profiles) {
+    const fragment = document.createDocumentFragment();
+
+    for (let profile of profiles) {
+        const a = document.createElement('a');
+        const li = document.createElement('li');
+
+        li.textContent = profile.user_name;
+
+        a.href = `../profile/?id=${profile.id}`;
+        a.append(li);
+        fragment.append(a);
+
+    }
+    return fragment;
+}
+
+export function renderProfileCreate(params) {
+    const formDiv = document.createElement('div');
+    const nameInput = document.createElement('input');
+    const bioInput = document.createElement('textarea');
+    const formSubmit = document.createElement('button');
+
+    nameInput.placeholder = 'Enter Your Profile Name';
+    bioInput.placeholder = 'Enter Your Bio';
+    formSubmit.textContent = 'Create Profile';
+
+
+
+    formSubmit.addEventListener('click', async () => {
+        const userId = params;
+        const userName = nameInput.value;
+        const userBio = bioInput.value; 
+        await createProfile(userId, userName, userBio);
+        location.reload();
+    });
+
+    formDiv.append(nameInput, bioInput, formSubmit);
+    return formDiv;
 }

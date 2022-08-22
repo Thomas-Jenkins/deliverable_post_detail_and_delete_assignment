@@ -1,5 +1,5 @@
-const SUPABASE_URL = '';
-const SUPABASE_KEY = '';
+const SUPABASE_URL = 'https://sushgnkqkgfdkwxudpdy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1c2hnbmtxa2dmZGt3eHVkcGR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjAwNjEyMDEsImV4cCI6MTk3NTYzNzIwMX0.PWaLx9CyI6jaOzBx-1JPnId6_IrMlC4rYSEFZtsLwPw';
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* Auth related functions */
@@ -8,9 +8,11 @@ export function getUser() {
     return client.auth.user();
 }
 
+
 export function checkAuth() {
     const user = getUser();
     if (!user) location.replace(`/auth/?redirectUrl=${encodeURIComponent(location)}`);
+    
     return user;
 }
 
@@ -53,3 +55,20 @@ export async function getPosts() {
 export async function createPost(post) {
     return await client.from('posts').insert(post);
 }
+
+export async function getProfiles() {
+    const response = await client.from('profiles').select('*');
+
+    return checkError(response);
+}
+export async function getProfileById(id) {
+    const response = await client.from('profiles').select('*').match({ id }).single();
+    return checkError(response);
+}
+
+export async function createProfile(id, user_name, bio) {
+    
+    await client.from('profiles').upsert({ id, user_name, bio });
+    
+}
+
